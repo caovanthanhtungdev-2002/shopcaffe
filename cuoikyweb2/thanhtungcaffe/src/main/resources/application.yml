@@ -1,0 +1,42 @@
+server:
+  port: 8082
+
+spring:
+  datasource:
+    url: jdbc:mysql://mysql:3306/cafe_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: cafe_user
+    password: cafe_pass
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+
+  application:
+    name: thanhtungcaffe
+
+  web:
+    resources:
+      static-locations: file:uploads/   # thư mục lưu ảnh
+  mvc:
+    static-path-pattern: /uploads/**   # URL truy cập ảnh
+
+app:
+  upload-dir: uploads
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: always
+
+jwt:
+  secret: change_this_to_a_long_random_secret_key_which_is_at_least_32_chars
+  expiration-ms: 86400000
